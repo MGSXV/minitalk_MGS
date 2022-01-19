@@ -5,34 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/14 12:02:39 by sel-kham          #+#    #+#              #
-#    Updated: 2022/01/17 02:43:32 by sel-kham         ###   ########.fr        #
+#    Created: 2021/12/13 17:39:56 by sel-kham          #+#    #+#              #
+#    Updated: 2021/12/15 01:24:26 by sel-kham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS := -Wall -Wextra -Werror
-NAME := exutable
-SERVER := server
-CLIENT := client
-LIBFT := ./libft/libft.a
-PRINTF := ./ft_print/libftprintf.a
-SRC := ft_server.c ft_client.c
+CFLAGS := -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re bonus
+HEADER := ft_printf.h
 
-all: $(SERVER) $(CLIENT)
+NAME := libftprintf.a
 
-$(SERVER): ft_server.c $(LIBFT) $(PRINTF)
-	$(CC) $(FLAGS) ft_server.c $(LIBFT) $(PRINTF) -o $(SERVER)
+OBJ_DIR := Object_Files
 
-$(LIBFT):
-	cd ./libft
-	make
-	make clean
-	cd ..
+SRC_FILES_M := ft_printf.c\
+			ft_printf_utils.c\
+			ft_putnbr_base.c\
+			ft_putchar.c\
+			ft_putstr.c\
+			
+OBJ_FILES_M := $(addprefix $(OBJ_DIR)/, $(SRC_FILES_M:.c=.o))
 
-$(PRINTF):
-	cd ./ft_printf
-	make
-	make clean
-	cd ..
+.PHONY: clean fclean all re
+
+all: $(NAME)
+
+$(NAME): $(OBJ_FILES_M) $(HEADER)
+	ar -rcs $(NAME) $(OBJ_FILES_M)
+
+$(OBJ_DIR)/%.o:%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+clean:
+	rm -rf $(OBJ_DIR)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
