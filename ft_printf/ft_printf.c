@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 17:31:56 by sel-kham          #+#    #+#             */
-/*   Updated: 2021/12/15 16:52:56 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:36:38 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_printf(const char *fmt, ...)
 			ft_putchar(fmt[i], &count);
 		else
 		{
-			if (ft_strchr("cspdiuxX%", fmt[++i]))
+			if (ft_strchrc("cspdiuxX%", fmt[++i]))
 				ts_handler(ap, fmt[i], &count);
 			else
 				ft_putchar(fmt[i], &count);
