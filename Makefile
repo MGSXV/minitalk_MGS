@@ -6,7 +6,7 @@
 #    By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/14 12:02:39 by sel-kham          #+#    #+#              #
-#    Updated: 2022/01/20 01:57:23 by sel-kham         ###   ########.fr        #
+#    Updated: 2022/01/20 02:32:20 by sel-kham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,14 @@ FLAGS := -Wall -Wextra -Werror
 
 SERVER := server
 CLIENT := client
+NAME := $(SERVER) $(CLIENT)
+
 LIBFT_DIR := libft
 LIBFT := $(LIBFT_DIR)/libft.a
 
 PRINTF_DIR := ft_printf
 PRINTF := $(PRINTF_DIR)/libftprintf.a
 
-NAME := server client
 
 .PHONY: all clean fclean re bonus
 
