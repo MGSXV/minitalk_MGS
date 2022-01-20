@@ -6,7 +6,7 @@
 #    By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 17:39:56 by sel-kham          #+#    #+#              #
-#    Updated: 2021/12/15 01:24:26 by sel-kham         ###   ########.fr        #
+#    Updated: 2022/01/20 01:51:41 by sel-kham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,16 +31,16 @@ OBJ_FILES_M := $(addprefix $(OBJ_DIR)/, $(SRC_FILES_M:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES_M) $(HEADER)
-	ar -rcs $(NAME) $(OBJ_FILES_M)
+	@ar -rcs $(NAME) $(OBJ_FILES_M)
 
 $(OBJ_DIR)/%.o:%.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all

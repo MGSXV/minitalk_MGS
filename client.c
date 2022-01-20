@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_client.c                                        :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:15:49 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/01/19 23:10:05 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/01/20 01:41:44 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@
 
 int	main(int c, char **v)
 {
-	pid_t	my_pid;
 	int		server_pid;
 	
-	if (c < 3)
-		return (printf("You need to pass Server's PID as argument!\n\n"), 0);
-	//server_pid = ft_atoi(v[1]);
-	printf("Server's PID: %d\n", server_pid);
-	kill(7137, SIGUSR1);
+	if (c != 3)
+		return (printf("You need to pass Server's PID and the message as arguments!\n"), 0);
+	server_pid = ft_atoi(v[1]);
+	printf("Messgae sent to: %d\n", server_pid);
+	kill(server_pid, SIGUSR1);
 }
