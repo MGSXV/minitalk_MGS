@@ -6,7 +6,7 @@
 #    By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/14 12:02:39 by sel-kham          #+#    #+#              #
-#    Updated: 2022/01/20 02:32:20 by sel-kham         ###   ########.fr        #
+#    Updated: 2022/01/20 16:38:13 by sel-kham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,17 @@ all: $(NAME)
 
 $(SERVER): server.c $(LIBFT) $(PRINTF)
 	@echo "Making server file..."
-	@$(CC) $(FLAGS) server.c $(LIBFT) $(LIBFT) -o $(SERVER)
+	@$(CC) $(FLAGS) server.c $(LIBFT) $(PRINTF) -o $(SERVER)
 
 $(CLIENT): client.c $(LIBFT) $(PRINTF)
 	@echo "Making client file..."
 	@$(CC) $(FLAGS) client.c $(LIBFT) $(PRINTF) -o $(CLIENT)
 
-$(LIBFT): $(LIBFT_DIR)/$(MAKEFILE)
+$(LIBFT): $(shell find $(LIBFT_DIR) -name "*.c" -type f)
 	@echo "Making libft files..."
 	@$(MAKE) -C $(LIBFT_DIR)/
 
-$(PRINTF): $(PRINTF_DIR)/$(MAKEFILE)
+$(PRINTF): $(shell find $(PRINTF_DIR) -name "*.c" -type f)
 	@echo "Making ft_printf files..."
 	@$(MAKE) -C $(PRINTF_DIR)/
 
