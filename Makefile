@@ -6,7 +6,7 @@
 #    By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/14 12:02:39 by sel-kham          #+#    #+#              #
-#    Updated: 2022/01/20 16:38:13 by sel-kham         ###   ########.fr        #
+#    Updated: 2022/01/21 03:01:00 by sel-kham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,15 @@ LIBFT := $(LIBFT_DIR)/libft.a
 PRINTF_DIR := ft_printf
 PRINTF := $(PRINTF_DIR)/libftprintf.a
 
+SERVER_B := $(SERVER)
+CLIENT_B := $(CLIENT)
+
 
 .PHONY: all clean fclean re bonus
 
 all: $(NAME)
+
+bonus: $(SERVER_B) $(CLIENT_B)
 
 $(SERVER): server.c $(LIBFT) $(PRINTF)
 	@echo "Making server file..."
@@ -34,6 +39,14 @@ $(SERVER): server.c $(LIBFT) $(PRINTF)
 $(CLIENT): client.c $(LIBFT) $(PRINTF)
 	@echo "Making client file..."
 	@$(CC) $(FLAGS) client.c $(LIBFT) $(PRINTF) -o $(CLIENT)
+
+$(SERVER_B): server_bonus.c $(LIBFT) $(PRINTF)
+	@echo "Making server bonus file..."
+	@$(CC) $(FLAGS) server_bonus.c $(LIBFT) $(PRINTF) -o $(SERVER_B)
+
+$(CLIENT_B): client_bonus.c $(LIBFT) $(PRINTF)
+	@echo "Making client bonus file..."
+	@$(CC) $(FLAGS) client_bonus.c $(LIBFT) $(PRINTF) -o $(CLIENT_B)
 
 $(LIBFT): $(shell find $(LIBFT_DIR) -name "*.c" -type f)
 	@echo "Making libft files..."
