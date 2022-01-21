@@ -6,13 +6,11 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:16:02 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/01/21 02:06:39 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/01/21 02:08:36 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h> 
-#include <sys/types.h> /* various type definitions, like pid_t */
+#include <sys/types.h>
 #include <signal.h>
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
