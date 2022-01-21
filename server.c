@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:16:02 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/01/21 01:49:08 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/01/21 02:06:39 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <signal.h>
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
-
 
 void	sig_handler(int signum)
 {
