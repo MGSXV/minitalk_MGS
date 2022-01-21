@@ -6,7 +6,7 @@
 #    By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/14 12:02:39 by sel-kham          #+#    #+#              #
-#    Updated: 2022/01/21 03:01:00 by sel-kham         ###   ########.fr        #
+#    Updated: 2022/01/21 16:06:05 by sel-kham         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ LIBFT := $(LIBFT_DIR)/libft.a
 PRINTF_DIR := ft_printf
 PRINTF := $(PRINTF_DIR)/libftprintf.a
 
-SERVER_B := $(SERVER)
-CLIENT_B := $(CLIENT)
+SERVER_B := server_bonus
+CLIENT_B := client_bonus
 
 
 .PHONY: all clean fclean re bonus
@@ -66,7 +66,7 @@ clean:
 
 fclean: clean
 	@echo "Removing Minittalk executable files..."
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(SERVER_B) $(CLIENT_B)
 	@echo "Removing libft static library file..."
 	@$(MAKE) -C $(LIBFT_DIR)/ fclean
 	@echo "Removing ft_printf static library file..."
