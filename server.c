@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:16:02 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/01/20 16:10:01 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/01/21 01:49:08 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,22 @@
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
 
+
 void	sig_handler(int signum)
 {
-	ft_printf("Signal captured: %d\n", signum);
+	static int	i;
+	static char	c;
+
+	if (signum == SIGUSR1)
+		c = (1 << i) | c;
+	if (i == 6)
+	{
+		ft_printf("%c", c);
+		i = 0;
+		c = 0;
+	}
+	else
+		i++;
 }
 
 int	main(void)
