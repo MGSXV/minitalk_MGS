@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:15:49 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/01/21 02:32:56 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/02/03 23:54:58 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include <signal.h>
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
+
+void	ft_error(char *err_msg)
+{
+	ft_printf(err_msg);
+	exit(1);
+}
 
 void	char_to_bits(char c, pid_t pid)
 {
@@ -23,21 +29,11 @@ void	char_to_bits(char c, pid_t pid)
 	while (++bit < 7)
 	{
 		if (1 & (c >> bit))
-		{
 			if (kill(pid, SIGUSR1) == -1)
-			{
-				ft_printf("Error while sending the signal!\n");
-				exit(1);
-			}
-		}
+				ft_error("Error while sending the signal!\n");
 		else
-		{
 			if (kill(pid, SIGUSR2) == -1)
-			{
-				ft_printf("Error while sending the signal!\n");
-				exit(1);
-			}
-		}
+				ft_error("Error while sending the signal!\n");
 		usleep(200);
 	}
 }
@@ -56,15 +52,9 @@ int	main(int c, char **v)
 	int		server_pid;
 
 	if (c != 3)
-	{
-		ft_printf("Pass only Server's PID and the message as arguments!\n");
-		exit(1);
-	}
+		ft_error("Pass only Server's PID and the message as arguments!\n");
 	server_pid = ft_atoi(v[1]);
 	if (server_pid <= 0)
-	{
-		ft_printf("Server's PID can't be equals to or less than 0!\n");
-		exit(1);
-	}
+		ft_error("Server's PID can't be equals to or less than 0!\n");
 	send_signal(server_pid, v[2]);
 }
