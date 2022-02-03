@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 03:02:29 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/01/21 19:35:29 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:14:05 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 {
 	pid_t				my_pid;
 	struct sigaction	sa_h;
-	
+
 	sa_h.sa_flags = SA_SIGINFO;
 	sa_h.sa_sigaction = &sig_handler;
 	sigaction(SIGUSR1, &sa_h, NULL);
