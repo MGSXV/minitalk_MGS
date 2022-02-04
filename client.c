@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:15:49 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/02/03 23:54:58 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:48:22 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ void	char_to_bits(char c, pid_t pid)
 	while (++bit < 7)
 	{
 		if (1 & (c >> bit))
+		{
 			if (kill(pid, SIGUSR1) == -1)
 				ft_error("Error while sending the signal!\n");
+		}
 		else
+		{
 			if (kill(pid, SIGUSR2) == -1)
 				ft_error("Error while sending the signal!\n");
+		}
 		usleep(200);
 	}
 }
