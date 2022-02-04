@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 03:02:29 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/02/03 14:14:05 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/02/04 18:54:22 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	sig_handler(int signum, siginfo_t *siginfo, void *context)
 		c = (1 << i) | c;
 	if (i == 6)
 	{
+		if (c == 0)
+			kill(siginfo->si_pid, SIGUSR1);
 		ft_printf("%c", c);
 		i = 0;
 		c = 0;

@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 03:02:41 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/02/03 23:57:34 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/02/04 18:55:59 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
 
-void	confermation_signal(int signum)
+void	confirm_receiving(int signum)
 {
-	ft_printf("The message sent successfully to the server!!");
+	if (signum == SIGUSR1)
+		ft_printf("The message received successfully by the server.\n");
 }
 
 void	ft_error(char *err_msg)
@@ -31,18 +32,22 @@ void	char_to_bits(char c, pid_t pid)
 	unsigned int	bit;
 
 	bit = -1;
-	while (++bit < 32)
+	if (c == 0)
+		signal(SIGUSR1, &confirm_receiving);
+	while (++bit < 7)
 	{
 		if (1 & (c >> bit))
+		{
 			if (kill(pid, SIGUSR1) == -1)
 				ft_error("Error while sending the signal!\n");
+		}
 		else
+		{
 			if (kill(pid, SIGUSR2) == -1)
 				ft_error("Error while sending the signal!\n");
+		}
 		usleep(200);
 	}
-	pause();
-	signal(SIGUSR1, &confermation_signal);
 }
 
 void	send_signal(pid_t pid, char *msg)
@@ -52,6 +57,7 @@ void	send_signal(pid_t pid, char *msg)
 	i = -1;
 	while (msg[++i])
 		char_to_bits(msg[i], pid);
+	char_to_bits(msg[i], pid);
 }
 
 int	main(int c, char **v)
