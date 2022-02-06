@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 03:02:41 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/02/04 18:55:59 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/02/06 02:54:19 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	ft_error(char *err_msg)
 
 void	char_to_bits(char c, pid_t pid)
 {
-	unsigned int	bit;
+	int	bit;
 
 	bit = -1;
 	if (c == 0)
 		signal(SIGUSR1, &confirm_receiving);
-	while (++bit < 7)
+	while (++bit <= 7)
 	{
 		if (1 & (c >> bit))
 		{
