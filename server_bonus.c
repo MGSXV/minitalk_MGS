@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 03:02:29 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/02/06 15:08:46 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/02/06 15:10:49 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	sig_handler(int signum, siginfo_t *siginfo, void *context)
 	if (client_pid != old_client_pid)
 	{
 		i = 0;
-		c = 0;		
+		c = 0;
 	}
 	old_client_pid = client_pid;
 	if (signum == SIGUSR1)
