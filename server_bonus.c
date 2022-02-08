@@ -6,7 +6,7 @@
 /*   By: sel-kham <sel-kham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 03:02:29 by sel-kham          #+#    #+#             */
-/*   Updated: 2022/02/06 15:10:49 by sel-kham         ###   ########.fr       */
+/*   Updated: 2022/02/08 04:39:01 by sel-kham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,45 @@
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
 
+typedef struct s_init{
+	int		i;
+	char	c;
+	int		client_pid;
+	int		old_client_pid;
+	char	last_char;
+}	t_init;
+
+void	reset_count(int *i, char *c)
+{
+	*i = 0;
+	*c = 0;
+}
+
 void	sig_handler(int signum, siginfo_t *siginfo, void *context)
 {
-	static int	i;
-	static char	c;
-	static int	client_pid;
-	static int	old_client_pid;
+	static t_init	srv_req;
 
 	context = NULL;
-	client_pid = siginfo->si_pid;
-	if (client_pid != old_client_pid)
+	srv_req.client_pid = siginfo->si_pid;
+	if (srv_req.client_pid != srv_req.old_client_pid)
 	{
-		i = 0;
-		c = 0;
+		if ((srv_req.last_char >> 8 & 1))
+			ft_printf("%c", 8);
+		reset_count(&srv_req.i, &srv_req.c);
 	}
-	old_client_pid = client_pid;
+	srv_req.old_client_pid = srv_req.client_pid;
 	if (signum == SIGUSR1)
-		c = (1 << i) | c;
-	if (i == 7)
+		srv_req.c = (1 << srv_req.i) | srv_req.c;
+	if (srv_req.i == 7)
 	{
-		if (c == 0)
+		if (srv_req.c == 0)
 			kill(siginfo->si_pid, SIGUSR1);
-		ft_printf("%c", c);
-		i = 0;
-		c = 0;
+		ft_printf("%c", srv_req.c);
+		srv_req.last_char = srv_req.c;
+		reset_count(&srv_req.i, &srv_req.c);
 	}
 	else
-		i++;
+		srv_req.i++;
 }
 
 int	main(void)
