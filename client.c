@@ -38,7 +38,7 @@ void	char_to_bits(char c, pid_t pid)
 			if (kill(pid, SIGUSR2) == -1)
 				ft_error("Error while sending the signal!\n");
 		}
-		usleep(200);
+		usleep(500);
 	}
 }
 
